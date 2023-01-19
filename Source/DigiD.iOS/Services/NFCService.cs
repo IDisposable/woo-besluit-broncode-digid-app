@@ -174,35 +174,36 @@ namespace DigiD.iOS.Services
         {
             if (_session != null)
             {
-                var percentagePart = GetPercentageRounds(percentage);
+                var percentagePart = GetPercentageGaugeDisplay(percentage);
                 _session.AlertMessage = $"{percentagePart}\r\n{_baseMessage}";
             }
         }
 
-        private static string GetPercentageRounds(double percentage)
+        private static string GetPercentageGaugeDisplay(double percentage)
         {
-            if (percentage == 0)
-                return "⚪⚪⚪⚪⚪⚪⚪⚪⚪⚪";
-            if (percentage > 0.0 && percentage <= 0.1)
-                return "🔵⚪⚪⚪⚪⚪⚪⚪⚪⚪";
-            if (percentage > 0.1 && percentage <= 0.2)
-                return "🔵🔵⚪⚪⚪⚪⚪⚪⚪⚪";
-            if (percentage > 0.2 && percentage <= 0.3)
-                return "🔵🔵🔵⚪⚪⚪⚪⚪⚪⚪";
-            if (percentage > 0.3 && percentage <= 0.4)
-                return "🔵🔵🔵🔵⚪⚪⚪⚪⚪⚪";
-            if (percentage > 0.4 && percentage <= 0.5)
-                return "🔵🔵🔵🔵🔵⚪⚪⚪⚪⚪";
-            if (percentage > 0.5 && percentage <= 0.6)
-                return "🔵🔵🔵🔵🔵🔵⚪⚪⚪⚪";
-            if (percentage > 0.6 && percentage <= 0.7)
-                return "🔵🔵🔵🔵🔵🔵🔵⚪⚪⚪";
-            if (percentage > 0.7 && percentage <= 0.8)
-                return "🔵🔵🔵🔵🔵🔵🔵🔵⚪⚪";
-            if (percentage > 0.8 && percentage <= 0.9)
+            if (percentage > 0.9)
+                return "🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵";
+            if (percentage > 0.8)
                 return "🔵🔵🔵🔵🔵🔵🔵🔵🔵⚪";
+            if (percentage > 0.7)
+                return "🔵🔵🔵🔵🔵🔵🔵🔵⚪⚪";
+            if (percentage > 0.6)
+                return "🔵🔵🔵🔵🔵🔵🔵⚪⚪⚪";
+            if (percentage > 0.5)
+                return "🔵🔵🔵🔵🔵🔵⚪⚪⚪⚪";
+            if (percentage > 0.4)
+                return "🔵🔵🔵🔵🔵⚪⚪⚪⚪⚪";
+            if (percentage > 0.3)
+                return "🔵🔵🔵🔵⚪⚪⚪⚪⚪⚪";
+            if (percentage > 0.2)
+                return "🔵🔵🔵⚪⚪⚪⚪⚪⚪⚪";
+            if (percentage > 0.1)
+                return "🔵🔵⚪⚪⚪⚪⚪⚪⚪⚪";
+            if (percentage > 0.0)
+                return "🔵⚪⚪⚪⚪⚪⚪⚪⚪⚪";
 
-            return "🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵";
+            // handled zero, negative zero, negatives, NaN, etc
+            return "⚪⚪⚪⚪⚪⚪⚪⚪⚪⚪";
         }
     }
 }
